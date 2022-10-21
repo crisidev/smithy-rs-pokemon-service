@@ -16,4 +16,9 @@ model/build
 
 # Smithy
 .smithy.lsp.log
+
+# Gradle
 .gradle
+build/
+gradle-app.setting
+!gradle-wrapper.jar
