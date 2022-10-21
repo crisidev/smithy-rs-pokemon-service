@@ -21,4 +21,7 @@ model/build
 .gradle
 build/
 gradle-app.setting
-!gradle-wrapper.jar
+gradle-wrapper.jar
+
+# mkcert
+certs

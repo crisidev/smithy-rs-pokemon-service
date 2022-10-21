@@ -9,9 +9,12 @@ fn main() {
         .output()
         .unwrap();
 
-    if ! cmd.status.success() {
+    if !cmd.status.success() {
         let out = String::from_utf8_lossy(&cmd.stdout);
         let err = String::from_utf8_lossy(&cmd.stderr);
-        panic!("Failed to build Smithy model, output: {}, error: {}", out, err);
+        panic!(
+            "Failed to build Smithy model, output: {}, error: {}",
+            out, err
+        );
     }
 }

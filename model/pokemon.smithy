@@ -87,7 +87,6 @@ string Language
 @error("client")
 @httpError(404)
 structure PokemonNotFoundException {
+    @required
     message: String,
 }
-
-
