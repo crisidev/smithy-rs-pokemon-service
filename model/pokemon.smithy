@@ -11,7 +11,7 @@ service PokemonService {
     version: "2022-10-21",
     operations: [
         GetPokemonSpecies,
-        /* EvolvePokemon */
+        EvolvePokemon
     ]
 }
 
@@ -24,12 +24,28 @@ operation GetPokemonSpecies {
     errors: [PokemonNotFoundException],
 }
 
+/// Evolves a Pokémon to the next level.
+@http(uri: "/evolve-pokemon/{name}", method: "POST")
+operation EvolvePokemon {
+    input: EvolvePokemonInput,
+    output: EvolvePokemonOutput,
+    errors: [PokemonEvolveException],
+}
+
 @input
 structure GetPokemonSpeciesInput {
-    /// The name for this resource.
+    /// The name for the Pokémon to search.
     @required
     @httpLabel
     name: String
+}
+
+@input
+structure EvolvePokemonInput {
+    /// The name for the Pokémon to evolve.
+    @required
+    @httpLabel
+    name: String,
 }
 
 @output
@@ -41,6 +57,21 @@ structure GetPokemonSpeciesOutput {
     /// A list of flavor text entries for this Pokémon species.
     @required
     flavorTextEntries: FlavorTextEntries
+}
+
+@output
+structure EvolvePokemonOutput {
+    /// The name for this resource.
+    @required
+    name: String,
+
+    /// A list of flavor text entries for this Pokémon species.
+    @required
+    evolveChain: EvolveChain
+}
+
+list EvolveChain {
+    member: Pokemon
 }
 
 // List of FlavorTextEntries
@@ -83,10 +114,24 @@ structure FlavorText {
 ])
 string Language
 
+structure Pokemon {
+    @required
+    name: String,
+    evolution: Pokemon,
+}
+
 // Return 404 to the client if the requested Pokémon does not exist.
 @error("client")
 @httpError(404)
 structure PokemonNotFoundException {
+    @required
+    message: String,
+}
+
+// Return 404 to the client if the requested Pokémon does not exist.
+@error("client")
+@httpError(404)
+structure PokemonEvolveException {
     @required
     message: String,
 }

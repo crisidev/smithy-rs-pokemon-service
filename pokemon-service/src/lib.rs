@@ -9,6 +9,7 @@ use pokemon_service_server_sdk::{error, input, output};
 use tracing_subscriber::{prelude::*, EnvFilter};
 
 mod state;
+pub mod tls;
 
 pub use state::State;
 
@@ -25,6 +26,17 @@ pub fn setup_tracing() {
         .with(format)
         .with(filter)
         .init();
+}
+
+/// Retrieves information about a Pokémon species.
+pub async fn evolve_pokemon(
+    input: input::EvolvePokemonInput,
+    state: Extension<Arc<State>>,
+) -> Result<output::EvolvePokemonOutput, error::EvolvePokemonError> {
+    Ok(output::EvolvePokemonOutput::builder()
+        .name("")
+        .build()
+        .unwrap())
 }
 
 /// Retrieves information about a Pokémon species.
