@@ -1,0 +1,8 @@
+[workspace]
+members = [
+    "pokemon-service",
+    "pokemon-service-sdk",
+]
+exclude = [
+    "model/build/codegen/pokemon-service/rust-server-codegen"
+]

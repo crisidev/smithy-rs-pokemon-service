@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "projections": {
+    "pokemon-service": {
+      "imports": ["./pokemon.smithy"],
+      "plugins": {
+        "rust-server-codegen": {
+          "service": "org.crisidev#PokemonService",
+          "module": "service-service-sdk",
+          "moduleDescription": "Rust server SDK for the Pokémon Service",
+          "moduleVersion": "0.1.0",
+          "moduleAuthors": ["Bigo <bigo@crisidev.org>"],
+          "runtimeConfig": {
+            "version": "DEFAULT"
+          }
+        }
+      }
+    }
+  }
+}
