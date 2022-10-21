@@ -2,6 +2,13 @@
 name = "pokemon-service"
 version = "0.1.0"
 edition = "2021"
+authors = ["Bigo <bigo@crisidev.org>"]
+description = "The Pokémon Service allows you to retrieve information about Pokémon species."
+documentation = "https://github.com/crisidev/smithy-rs-pokemon-service/README.md"
+readme = "README.md"
+homepage = "https://github.com/crisidev/smithy-rs-pokemon-service"
+repository = "https://github.com/crisidev/smithy-rs-pokemon-service/"
+license = "MIT"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

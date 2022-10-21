@@ -10,7 +10,8 @@ Cargo.lock
 **/*.rs.bk
 
 # Codegenated package
-pokemon-service-sdk
+pokemon-service-client-sdk
+pokemon-service-server-sdk
 model/build
 
 # Smithy

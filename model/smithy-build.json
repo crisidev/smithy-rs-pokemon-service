@@ -1,20 +1,43 @@
 {
-  "version": "1.0",
-  "projections": {
-    "pokemon-service": {
-      "imports": ["./pokemon.smithy"],
-      "plugins": {
-        "rust-server-codegen": {
-          "service": "org.crisidev#PokemonService",
-          "module": "service-service-sdk",
-          "moduleDescription": "Rust server SDK for the Pokémon Service",
-          "moduleVersion": "0.1.0",
-          "moduleAuthors": ["Bigo <bigo@crisidev.org>"],
-          "runtimeConfig": {
-            "version": "DEFAULT"
-          }
+    "version": "1.0",
+    "projections": {
+        "pokemon-service-server-sdk": {
+            "imports": [
+                "./pokemon.smithy"
+            ],
+            "plugins": {
+                "rust-server-codegen": {
+                    "service": "org.crisidev#PokemonService",
+                    "module": "pokemon-service-server-sdk",
+                    "moduleDescription": "Rust server SDK for the Pokémon Service",
+                    "moduleVersion": "0.1.0",
+                    "moduleAuthors": [
+                        "Bigo <bigo@crisidev.org>"
+                    ],
+                    "runtimeConfig": {
+                        "version": "DEFAULT"
+                    }
+                }
+            }
+        },
+        "pokemon-service-client-sdk": {
+            "imports": [
+                "./pokemon.smithy"
+            ],
+            "plugins": {
+                "rust-codegen": {
+                    "service": "org.crisidev#PokemonService",
+                    "module": "pokemon-service-client-sdk",
+                    "moduleDescription": "Rust client SDK for the Pokémon Service",
+                    "moduleVersion": "0.1.0",
+                    "moduleAuthors": [
+                        "Bigo <bigo@crisidev.org>"
+                    ],
+                    "runtimeConfig": {
+                        "version": "DEFAULT"
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
