@@ -1,0 +1,83 @@
+diff --git a/codegen-client/src/main/kotlin/software/amazon/smithy/rust/codegen/client/rustlang/CargoDependency.kt b/codegen-client/src/main/kotlin/software/amazon/smithy/rust/codegen/client/rustlang/CargoDependency.kt
+index 18aa5a31..1affbef4 100644
+--- a/codegen-client/src/main/kotlin/software/amazon/smithy/rust/codegen/client/rustlang/CargoDependency.kt
++++ b/codegen-client/src/main/kotlin/software/amazon/smithy/rust/codegen/client/rustlang/CargoDependency.kt
+@@ -208,6 +208,7 @@ data class CargoDependency(
+         val TokioStream: CargoDependency = CargoDependency("tokio-stream", CratesIo("0.1.7"))
+         val Tower: CargoDependency = CargoDependency("tower", CratesIo("0.4"))
+         val Tracing: CargoDependency = CargoDependency("tracing", CratesIo("0.1"))
++        val Serde: CargoDependency = CargoDependency("serde", CratesIo("1.0"), features = setOf("derive"))
+ 
+         fun SmithyTypes(runtimeConfig: RuntimeConfig) = runtimeConfig.runtimeCrate("types")
+         fun SmithyClient(runtimeConfig: RuntimeConfig) = runtimeConfig.runtimeCrate("client")
+diff --git a/codegen-client/src/main/kotlin/software/amazon/smithy/rust/codegen/client/smithy/generators/EnumGenerator.kt b/codegen-client/src/main/kotlin/software/amazon/smithy/rust/codegen/client/smithy/generators/EnumGenerator.kt
+index 1d5447ca..e34c121e 100644
+--- a/codegen-client/src/main/kotlin/software/amazon/smithy/rust/codegen/client/smithy/generators/EnumGenerator.kt
++++ b/codegen-client/src/main/kotlin/software/amazon/smithy/rust/codegen/client/smithy/generators/EnumGenerator.kt
+@@ -27,6 +27,9 @@ import software.amazon.smithy.rust.codegen.core.util.dq
+ import software.amazon.smithy.rust.codegen.core.util.getTrait
+ import software.amazon.smithy.rust.codegen.core.util.orNull
+ 
++import software.amazon.smithy.rust.codegen.client.rustlang.CargoDependency
++import software.amazon.smithy.rust.codegen.client.rustlang.Attribute
++import software.amazon.smithy.rust.codegen.client.rustlang.asType
+ /** Model that wraps [EnumDefinition] to calculate and cache values required to generate the Rust enum source. */
+ class EnumMemberModel(private val definition: EnumDefinition, private val symbolProvider: RustSymbolProvider) {
+     // Because enum variants always start with an upper case letter, they will never
+@@ -161,6 +164,8 @@ open class EnumGenerator(
+         )
+         writer.deprecatedShape(shape)
+ 
++        val symbols = listOf(CargoDependency.Serde.asType())
++        Attribute.Custom("derive(serde::Deserialize, serde::Serialize)", symbols = symbols).render(writer)
+         meta.render(writer)
+         writer.rustBlock("enum $enumName") {
+             sortedMembers.forEach { member -> member.render(writer) }
+diff --git a/codegen-client/src/main/kotlin/software/amazon/smithy/rust/codegen/client/smithy/generators/StructureGenerator.kt b/codegen-client/src/main/kotlin/software/amazon/smithy/rust/codegen/client/smithy/generators/StructureGenerator.kt
+index c1b93c72..01eb8ee9 100644
+--- a/codegen-client/src/main/kotlin/software/amazon/smithy/rust/codegen/client/smithy/generators/StructureGenerator.kt
++++ b/codegen-client/src/main/kotlin/software/amazon/smithy/rust/codegen/client/smithy/generators/StructureGenerator.kt
+@@ -37,6 +37,10 @@ import software.amazon.smithy.rust.codegen.core.util.dq
+ import software.amazon.smithy.rust.codegen.core.util.getTrait
+ import software.amazon.smithy.rust.codegen.core.util.hasTrait
+ 
++import software.amazon.smithy.rust.codegen.client.rustlang.CargoDependency
++import software.amazon.smithy.rust.codegen.client.rustlang.Attribute
++import software.amazon.smithy.rust.codegen.client.rustlang.asType
++
+ fun RustWriter.implBlock(structureShape: Shape, symbolProvider: SymbolProvider, block: RustWriter.() -> Unit) {
+     rustBlock("impl ${symbolProvider.toSymbol(structureShape).name}") {
+         block(this)
+@@ -167,6 +171,8 @@ open class StructureGenerator(
+         val containerMeta = symbol.expectRustMetadata()
+         writer.documentShape(shape, model)
+         writer.deprecatedShape(shape)
++        val symbols = listOf(CargoDependency.Serde.asType())
++        Attribute.Custom("derive(serde::Deserialize, serde::Serialize)", symbols = symbols).render(writer)
+         val withoutDebug = containerMeta.derives.copy(derives = containerMeta.derives.derives - RuntimeType.Debug)
+         containerMeta.copy(derives = withoutDebug).render(writer)
+ 
+diff --git a/codegen-client/src/main/kotlin/software/amazon/smithy/rust/codegen/client/smithy/generators/UnionGenerator.kt b/codegen-client/src/main/kotlin/software/amazon/smithy/rust/codegen/client/smithy/generators/UnionGenerator.kt
+index 388dc2e1..5a053cf2 100644
+--- a/codegen-client/src/main/kotlin/software/amazon/smithy/rust/codegen/client/smithy/generators/UnionGenerator.kt
++++ b/codegen-client/src/main/kotlin/software/amazon/smithy/rust/codegen/client/smithy/generators/UnionGenerator.kt
+@@ -20,6 +20,9 @@ import software.amazon.smithy.rust.codegen.client.smithy.expectRustMetadata
+ import software.amazon.smithy.rust.codegen.client.smithy.renamedFrom
+ import software.amazon.smithy.rust.codegen.core.util.toSnakeCase
+ 
++import software.amazon.smithy.rust.codegen.client.rustlang.CargoDependency
++import software.amazon.smithy.rust.codegen.client.rustlang.asType
++
+ fun CodegenTarget.renderUnknownVariant() = when (this) {
+     CodegenTarget.SERVER -> false
+     CodegenTarget.CLIENT -> true
+@@ -57,6 +60,9 @@ class UnionGenerator(
+ 
+         val unionSymbol = symbolProvider.toSymbol(shape)
+         val containerMeta = unionSymbol.expectRustMetadata()
++
++        val symbols = listOf(CargoDependency.Serde.asType())
++        Attribute.Custom("derive(serde::Deserialize, serde::Serialize)", symbols = symbols).render(writer)
+         containerMeta.render(writer)
+         writer.rustBlock("enum ${unionSymbol.name}") {
+             sortedMembers.forEach { member ->
