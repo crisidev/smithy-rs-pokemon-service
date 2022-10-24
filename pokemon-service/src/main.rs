@@ -3,13 +3,14 @@ use std::net::SocketAddr;
 use std::sync::Arc;
 
 use aws_smithy_http_server::AddExtensionLayer;
+use aws_smithy_http_server::instrumentation::InstrumentExt;
 use clap::Parser;
 use futures_util::stream::StreamExt;
 use pokemon_service::{
     get_pokemon_species, setup_tracing, tls, State,
 };
 use pokemon_service_server_sdk::service::PokemonService;
-// use aws_smithy_http_server::instrumentation::plugin::InstrumentExt;
+
 
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
@@ -41,7 +42,7 @@ pub async fn main() {
         // are async functions or async closures that take as input the operation's input and
         // return the operation's output.
         .get_pokemon_species(get_pokemon_species)
-        // .instrument()
+        .instrument()
         .build()
         .layer(&AddExtensionLayer::new(shared_state));
 
