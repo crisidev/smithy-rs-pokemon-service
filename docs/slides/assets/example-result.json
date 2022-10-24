@@ -1,0 +1,17 @@
+{
+  "flavorTextEntries": [
+    {
+      "flavorText": "When several of these Pokémon gather, their electricity could build and cause lightning storms.",
+      "language": "en"
+    },
+    {
+      "flavorText": "Quando vari Pokémon di questo tipo si radunano, la loro energia può causare forti tempeste.",
+      "language": "it"
+    },
+    {
+      "flavorText": "Cuando varios de estos Pokémon se juntan, su energía puede causar fuertes tormentas.",
+      "language": "es"
+    }
+  ],
+  "name": "pikachu"
+}

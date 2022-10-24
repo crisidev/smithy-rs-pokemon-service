@@ -9,6 +9,7 @@ use pokemon_service::{
     get_pokemon_species, setup_tracing, tls, State,
 };
 use pokemon_service_server_sdk::service::PokemonService;
+// use aws_smithy_http_server::instrumentation::plugin::InstrumentExt;
 
 #[derive(Parser, Debug)]
 #[clap(author, version, about, long_about = None)]
@@ -32,6 +33,7 @@ pub async fn main() {
     let args = Args::parse();
     setup_tracing();
     // Create the shared state.
+    //
     let shared_state = Arc::new(State::default());
     // Setup shared state and middlewares.
     let app = PokemonService::builder()
@@ -39,6 +41,7 @@ pub async fn main() {
         // are async functions or async closures that take as input the operation's input and
         // return the operation's output.
         .get_pokemon_species(get_pokemon_species)
+        // .instrument()
         .build()
         .layer(&AddExtensionLayer::new(shared_state));
 
