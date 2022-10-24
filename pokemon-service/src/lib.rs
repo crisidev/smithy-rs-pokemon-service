@@ -29,32 +29,17 @@ pub fn setup_tracing() {
 }
 
 /// Retrieves information about a Pokémon species.
-pub async fn evolve_pokemon(
-    input: input::EvolvePokemonInput,
-    state: Extension<Arc<State>>,
-) -> Result<output::EvolvePokemonOutput, error::EvolvePokemonError> {
-    Ok(output::EvolvePokemonOutput::builder()
-        .name("")
-        .build()
-        .unwrap())
-}
-
-/// Retrieves information about a Pokémon species.
 pub async fn get_pokemon_species(
     input: input::GetPokemonSpeciesInput,
     state: Extension<Arc<State>>,
 ) -> Result<output::GetPokemonSpeciesOutput, error::GetPokemonSpeciesError> {
-    state
-        .0
-        .call_count
-        .fetch_add(1, std::sync::atomic::Ordering::SeqCst);
     // We only support retrieving information about Pikachu.
     let pokemon = state.0.pokemons_translations.get(&input.name);
     match pokemon {
         Some(pokemon) => {
             tracing::debug!("Requested Pokémon is {}", input.name);
             let output = output::GetPokemonSpeciesOutput {
-                name: String::from("pikachu"),
+                name: input.name,
                 flavor_text_entries: pokemon.to_vec(),
             };
             Ok(output)

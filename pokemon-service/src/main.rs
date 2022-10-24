@@ -5,7 +5,9 @@ use std::sync::Arc;
 use aws_smithy_http_server::AddExtensionLayer;
 use clap::Parser;
 use futures_util::stream::StreamExt;
-use pokemon_service::{evolve_pokemon, get_pokemon_species, setup_tracing, tls, State};
+use pokemon_service::{
+    get_pokemon_species, setup_tracing, tls, State,
+};
 use pokemon_service_server_sdk::service::PokemonService;
 
 #[derive(Parser, Debug)]
@@ -37,7 +39,6 @@ pub async fn main() {
         // are async functions or async closures that take as input the operation's input and
         // return the operation's output.
         .get_pokemon_species(get_pokemon_species)
-        .evolve_pokemon(evolve_pokemon)
         .build()
         .layer(&AddExtensionLayer::new(shared_state));
 

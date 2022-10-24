@@ -1,5 +1,5 @@
 //! PokémonService shared state.
-use std::{collections::HashMap, sync::atomic::AtomicU64};
+use std::collections::HashMap;
 
 use pokemon_service_server_sdk::model::{FlavorText, Language};
 
@@ -60,7 +60,6 @@ use pokemon_service_server_sdk::model::{FlavorText, Language};
 #[derive(Debug)]
 pub struct State {
     pub(crate) pokemons_translations: HashMap<String, Vec<FlavorText>>,
-    pub(crate) call_count: AtomicU64,
 }
 
 impl Default for State {
@@ -103,7 +102,6 @@ impl Default for State {
         );
         Self {
             pokemons_translations,
-            call_count: Default::default(),
         }
     }
 }
