@@ -144,6 +144,24 @@
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-paginate="true" data-background-image="url('https://marp.app/assets/hero-background.svg')" data-theme="uncover" data-marpit-pagination="17" data-marpit-pagination-total="22" style="--paginate:true;--background-image:url('https://marp.app/assets/hero-background.svg');--theme:uncover;background-image:url('https://marp.app/assets/hero-background.svg');background-position:center;background-repeat:no-repeat;background-size:cover;">
 <h2>Service tracing</h2>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">❯❯❯ RUST_LOG=aws_smithy_http_server=debug,pokemon_service=debug pokemon-service
+
+2022-10-24T21:33:25.369093Z DEBUG request{
+    operation=org.crisidev<span class="hljs-comment">#GetPokemonSpecies</span>
+    method=GET
+    uri=https://localhost:13734/pokemon-species/pikachu
+    headers={<span class="hljs-string">&quot;user-agent&quot;</span>: <span class="hljs-string">&quot;curl/7.68.0&quot;</span>, <span class="hljs-string">&quot;accept&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span>}
+}: pokemon_service: 40: Requested Pokémon is pikachu
+
+2022-10-24T21:33:25.369436Z DEBUG request{
+    operation=org.crisidev<span class="hljs-comment">#GetPokemonSpecies</span>
+    method=GET
+    uri=https://localhost:13734/pokemon-species/pikachu
+    headers={<span class="hljs-string">&quot;user-agent&quot;</span>: <span class="hljs-string">&quot;curl/7.68.0&quot;</span>, <span class="hljs-string">&quot;accept&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span>}
+}: aws_smithy_http_server::instrumentation::service: 47: response
+    headers={<span class="hljs-string">&quot;content-type&quot;</span>: <span class="hljs-string">&quot;application/json&quot;</span>, <span class="hljs-string">&quot;content-length&quot;</span>: <span class="hljs-string">&quot;573&quot;</span>}
+    status_code=200 OK
+</code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-marpit-fragments="6" data-paginate="true" data-background-image="url('https://marp.app/assets/hero-background.svg')" data-theme="uncover" data-marpit-pagination="18" data-marpit-pagination-total="22" style="--paginate:true;--background-image:url('https://marp.app/assets/hero-background.svg');--theme:uncover;background-image:url('https://marp.app/assets/hero-background.svg');background-position:center;background-repeat:no-repeat;background-size:cover;--marpit-advanced-background-split:33%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="left"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;assets/python.png&quot;);"></figure></div></section></foreignObject><foreignObject width="67%" height="720" x="33%"><section id="18" data-marpit-fragments="6" data-paginate="true" data-background-image="url('https://marp.app/assets/hero-background.svg')" data-theme="uncover" data-marpit-pagination="18" data-marpit-pagination-total="22" style="--paginate:true;--background-image:url('https://marp.app/assets/hero-background.svg');--theme:uncover;background-image:url('https://marp.app/assets/hero-background.svg');background-position:center;background-repeat:no-repeat;background-size:cover;--marpit-advanced-background-split:33%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="left">
 <h2>Bonus</h2>

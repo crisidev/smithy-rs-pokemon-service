@@ -181,6 +181,26 @@ Generate the server and client SDK crates:
 
 ## Service tracing
 
+```bash
+❯❯❯ RUST_LOG=aws_smithy_http_server=debug,pokemon_service=debug pokemon-service
+
+2022-10-24T21:33:25.369093Z DEBUG request{
+    operation=org.crisidev#GetPokemonSpecies
+    method=GET
+    uri=https://localhost:13734/pokemon-species/pikachu
+    headers={"user-agent": "curl/7.68.0", "accept": "application/json"}
+}: pokemon_service: 40: Requested Pokémon is pikachu
+
+2022-10-24T21:33:25.369436Z DEBUG request{
+    operation=org.crisidev#GetPokemonSpecies
+    method=GET
+    uri=https://localhost:13734/pokemon-species/pikachu
+    headers={"user-agent": "curl/7.68.0", "accept": "application/json"}
+}: aws_smithy_http_server::instrumentation::service: 47: response
+    headers={"content-type": "application/json", "content-length": "573"}
+    status_code=200 OK
+```
+
 ---
 
 ![bg left:33%](assets/python.png)

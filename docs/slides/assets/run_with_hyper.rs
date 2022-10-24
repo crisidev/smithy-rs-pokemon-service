@@ -1,5 +1,4 @@
-use aws_smithy_http_server::AddExtensionLayer
-use aws_smithy_http_server::instrumentation::plugin::InstrumentExt;
+use aws_smithy_http_server::{AddExtensionLayer, instrumentation::InstrumentExt};
 use pokemon_service::{get_pokemon_species, State};
 use pokemon_service_sdk::service::PokemonService;
 
