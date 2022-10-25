@@ -49,11 +49,11 @@ Smithy is a language for defining services and SDKs.
 
 ## Smithy-rs
 
-* Generate SDKs and services in Rust
-* Code-generation + runtime components
-* Extensible, built on top of [Tower](https://tower.rs)
-* Reliable, built on top of [Tokio](http://tokio.rs) and [Hyper](https://hyper.rs)
-* Focus on the API business logic
+- Generate SDKs and services in Rust
+- Code-generation + runtime components
+- Extensible, built on top of [Tower](https://tower.rs)
+- Reliable, built on top of [Tokio](http://tokio.rs) and [Hyper](https://hyper.rs)
+- Focus on the API business logic
 
 ---
 
@@ -61,14 +61,14 @@ Smithy is a language for defining services and SDKs.
 
 ![bg right:30%](assets/pikachu.jpg)
 
-* Multiple protocols support
-  - 2 RPC and 1 REST over JSON
-  - More to come 🎉
-* Input validation
-* Sensitive fields
-* Tower middleware
-* Instrumentation
-* Run in lambda
+- Multiple protocols support
+    - 2 RPC and 1 REST over JSON
+    - More to come 🎉
+- Input validation
+- Sensitive fields
+- Tower middleware
+- Instrumentation
+- Run in lambda
 
 ---
 
@@ -120,11 +120,11 @@ Generate the server and client SDK crates:
 ❯❯❯ ./gradlew assemble
 ```
 
-* Input / Output / Error data types
-* Serialization / deserialization support
-* Service builder
-* Tower middlewares
-* Instrumentation
+- Input / Output / Error data types
+- Serialization / deserialization support
+- Service builder
+- Tower middlewares
+- Instrumentation
 
 ---
 
@@ -140,10 +140,35 @@ Generate the server and client SDK crates:
 
 ---
 
+## Handlers state
+
+![bg left:33%](assets/snorlax.jpg)
+
+```rust
+   Extension<Arc<State>>
+```
+
+- Supports arbitrary structures
+- Concurrency is up to the developer
+- Initialized once before startup
+- Shared between handlers
+- Tower middleware
+- Opt-in
+
+---
+
 ![bg](assets/pikachu-battle.jpg)
 
 <!-- _color: black -->
 ## Demo
+
+---
+
+## Start the service
+
+```bash
+❯❯❯ RUST_LOG=aws_smithy_http_server=debug,pokemon_service=debug pokemon-service
+```
 
 ---
 
@@ -182,16 +207,21 @@ Generate the server and client SDK crates:
 ## Service tracing
 
 ```bash
-❯❯❯ RUST_LOG=aws_smithy_http_server=debug,pokemon_service=debug pokemon-service
-
-2022-10-24T21:33:25.369093Z DEBUG request{
+2022-10-25T08:20:32.313991Z DEBUG request{
     operation=org.crisidev#GetPokemonSpecies
     method=GET
     uri=https://localhost:13734/pokemon-species/pikachu
     headers={"user-agent": "curl/7.68.0", "accept": "application/json"}
-}: pokemon_service: 40: Requested Pokémon is pikachu
+}: pokemon_service: 37: Requested Pokémon is pikachu
 
-2022-10-24T21:33:25.369436Z DEBUG request{
+2022-10-25T08:20:32.314102Z  INFO request{
+    operation=org.crisidev#GetPokemonSpecies
+    method=GET
+    uri=https://localhost:13734/pokemon-species/pikachu
+    headers={"user-agent": "curl/7.68.0", "accept": "application/json"}
+}: pokemon_service: 41: Found Pokémon specie pikachu
+
+2022-10-25T08:20:32.314313Z DEBUG request{
     operation=org.crisidev#GetPokemonSpecies
     method=GET
     uri=https://localhost:13734/pokemon-species/pikachu
@@ -207,12 +237,12 @@ Generate the server and client SDK crates:
 
 ## Bonus
 
-* Write your business logic in Python
-* Powered by Rust and [PyO3](https://pyo3.rs)
-* Pure Python middlewares
-* Asyncio support
-* Run un AWS Lambda
-* 🚀 Fast! 🚀
+- Write your business logic in Python
+- Powered by Rust and [PyO3](https://pyo3.rs)
+- Pure Python middlewares
+- Asyncio support
+- Run un AWS Lambda
+- 🚀 Fast! 🚀
 
 ---
 

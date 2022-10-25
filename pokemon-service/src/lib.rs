@@ -34,10 +34,11 @@ pub async fn get_pokemon_species(
     state: Extension<Arc<State>>,
 ) -> Result<output::GetPokemonSpeciesOutput, error::GetPokemonSpeciesError> {
     // We only support retrieving information about Pikachu.
+    tracing::debug!("Requested Pokémon is {}", input.name);
     let pokemon = state.0.pokemons_translations.get(&input.name);
     match pokemon {
         Some(pokemon) => {
-            tracing::debug!("Requested Pokémon is {}", input.name);
+            tracing::info!("Found Pokémon specie {}", input.name);
             let output = output::GetPokemonSpeciesOutput {
                 name: input.name,
                 flavor_text_entries: pokemon.to_vec(),
