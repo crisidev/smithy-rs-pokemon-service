@@ -16,11 +16,12 @@ Rust Meetup October 2022
 
 ## Matteo Bigoi
 
-![bg left drop-shadow](https://s.gravatar.com/avatar/4fe79cd935adfafb4ecfe5f5fc378234?s=256&r=g)
+![bg left:33% drop-shadow](https://s.gravatar.com/avatar/4fe79cd935adfafb4ecfe5f5fc378234?s=256&r=g)
 
-- 🧑 Software Enginner in AWS
+- 🧑 Software Engineer in AWS Code Foundations
 - 💻 [crisidev](https://github.com/crisidev)
 - 💬 [@crisidev](https://twitter.com/crisidev)
+- 🌻 [crisidev/smithy-rs-pokemon-service](https://github.com/crisidev/smithy-rs-pokemon-service)
 
 <!--
 Matteo, software engineer in AWS, working for Code Foundation, org
@@ -96,7 +97,7 @@ SDKs. The technology is used for example to generate the public Rust SDKs
 
 ## Pokemon service
 
-![bg left:33% drop-shadow](https://static.wikia.nocookie.net/pokemon/images/6/6c/Char-pikachu.png/revision/latest)
+![bg left:33% drop-shadow](https://static.wikia.nocookie.net/pokemon/images/6/6c/Char-pikachu.png)
 
 API to retrieve information about Pokémon
 
@@ -156,13 +157,7 @@ Generate the server and client SDK crates:
 
 ---
 
-## Run with Hyper
-
-![image](assets/run_with_hyper.png)
-
----
-
-## Handlers state
+## State management
 
 ![bg left:33%](assets/snorlax.jpg)
 
@@ -176,6 +171,12 @@ Generate the server and client SDK crates:
 - Shared between handlers
 - Tower middleware
 - Opt-in
+
+---
+
+## Run with Hyper
+
+![image](assets/run_with_hyper.png)
 
 ---
 
@@ -316,4 +317,3 @@ Generate the server and client SDK crates:
 - [Smithy-rs code generation](https://awslabs.github.io/smithy-rs/design/server/code_generation.html)
 - [Smithy-rs instrumentation](https://awslabs.github.io/smithy-rs/design/server/instrumentation.html)
 - [Smithy-rs Pokémon service example](https://awslabs.github.io/smithy-rs/design/server/pokemon_service.html)
-
