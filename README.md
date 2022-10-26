@@ -111,10 +111,10 @@ Once this command has succeeded, you can use these commands in the new repo:
 ## Slides
 
 There are some slides built with [Marp](https://marp.app/#get-started) in the `docs/slides` folder
-that can be viewed by [opening the rendered HTML](docs/slides/slides.md).
+that can be viewed by [opening the rendered HTML](docs/slides.md).
 
 Slides can be rebuilt by running:
 
 ```bash
-❯❯❯ cd docs/slides && marp slides.md
+❯❯❯ cd docs && marp slides.md
 ```

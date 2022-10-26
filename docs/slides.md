@@ -164,7 +164,11 @@ Generate the server and client SDK crates:
 
 ---
 
-## Start the service
+![bg](assets/ash-pokeball.jpg)
+
+<!-- _color: white -->
+
+# Start the service
 
 ```bash
 ❯❯❯ RUST_LOG=aws_smithy_http_server=debug,pokemon_service=debug pokemon-service
@@ -233,7 +237,7 @@ Generate the server and client SDK crates:
 
 ---
 
-![bg left:33%](assets/python.png)
+![bg left:50%](assets/onix.png)
 
 ## Bonus
 
@@ -246,9 +250,27 @@ Generate the server and client SDK crates:
 
 ---
 
-## Python
+## 🐍🐍🐍🐍🐍
 
 ![image](assets/get_pokemon_species_sig.py.png)
+
+---
+
+## I want to use this!
+
+##### https://github.com/crisidev/smithy-rs-pokemon-service
+
+```bash
+❯❯❯ git clone https://github.com/crisidev/smithy-rs-pokemon-service
+❯❯❯ ./smithy-rs-pokemon-service/docs/template/new.sh my-service /tmp/my-service
+❯❯❯ cd /tmp/my-service && cargo build
+```
+
+- Simple repo showing the Pokémon service
+- Scripts to build a new project from templates
+    - Handles Gradle
+    - Handles smithy-rs dependencies
+
 
 ---
 

@@ -13,6 +13,7 @@ Cargo.lock
 pokemon-service-client-sdk
 pokemon-service-server-sdk
 model/build
+docs/slides.html
 
 # Smithy
 .smithy.lsp.log
