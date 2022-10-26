@@ -1,0 +1,43 @@
+{
+    "version": "1.0",
+    "projections": {
+        "%%CRATE_NAME%%-server-sdk": {
+            "imports": [
+                "./main.smithy"
+            ],
+            "plugins": {
+                "rust-server-codegen": {
+                    "service": "com.example#Service",
+                    "module": "%%CRATE_NAME%%-server-sdk",
+                    "moduleDescription": "Rust server SDK for CHANGEME",
+                    "moduleVersion": "0.1.0",
+                    "moduleAuthors": [
+                        "ChangeMe <changeme@changeme>"
+                    ],
+                    "runtimeConfig": {
+                        "version": "DEFAULT"
+                    }
+                }
+            }
+        },
+        "%%CRATE_NAME%%-client-sdk": {
+            "imports": [
+                "./main.smithy"
+            ],
+            "plugins": {
+                "rust-codegen": {
+                    "service": "com.example#Service",
+                    "module": "%%CRATE_NAME%%-client-sdk",
+                    "moduleDescription": "Rust client SDK for CHANGEME",
+                    "moduleVersion": "0.1.0",
+                    "moduleAuthors": [
+                        "ChangeMe <changeme@changeme>"
+                    ],
+                    "runtimeConfig": {
+                        "version": "DEFAULT"
+                    }
+                }
+            }
+        }
+    }
+}

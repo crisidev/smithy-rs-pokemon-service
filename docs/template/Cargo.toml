@@ -1,0 +1,10 @@
+[workspace]
+members = [
+    "%%CRATE_NAME%%",
+    "%%CRATE_NAME%%-client-sdk",
+    "%%CRATE_NAME%%-server-sdk",
+]
+exclude = [
+    "model/build/codegen/%%CRATE_NAME%%-server-sdk/rust-server-codegen",
+    "model/build/codegen/%%CRATE_NAME%%-client-sdk/rust-codegen",
+]

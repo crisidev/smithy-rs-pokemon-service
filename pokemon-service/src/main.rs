@@ -22,10 +22,10 @@ struct Args {
     #[clap(short, long, action, default_value = "13734")]
     port: u16,
     /// Hyper server TLS certificate path. Must be a PEM file.
-    #[clap(long, default_value = "certs/localhost.pem")]
+    #[clap(long, default_value = "certs/localhost.crt")]
     tls_cert_path: String,
     /// Hyper server TLS private key path. Must be a PEM file.
-    #[clap(long, default_value = "certs/localhost-key.pem")]
+    #[clap(long, default_value = "certs/localhost.key")]
     tls_key_path: String,
 }
 
