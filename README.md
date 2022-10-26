@@ -23,6 +23,7 @@ Gotta catch 'em all!
 * [Run and test](#run-and-test)
 * [Build my own project](#build-my-own-project)
 * [Slides](#slides)
+* [Generate a new SSL self-signed CA](#generate-a-new-ssl-self-signed-ca)
 
 <!-- vim-markdown-toc -->
 
@@ -115,4 +116,13 @@ Slides can be rebuilt by running:
 
 ```bash
 ❯❯❯ cd docs && marp slides.md
+```
+
+## Generate a new SSL self-signed CA
+
+```bash
+❯❯❯ openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes \
+  -keyout certs/localhost.key -out certs/localhost.crt -subj "/CN=localhost" \
+  -addext "basicConstraints=critical,CA:false" \
+  -addext "subjectAltName=DNS:localhost"
 ```
