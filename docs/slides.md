@@ -22,6 +22,16 @@ Rust Meetup October 2022
 - 💻 [crisidev](https://github.com/crisidev)
 - 💬 [@crisidev](https://twitter.com/crisidev)
 
+<!--
+Matteo, software engineer in AWS, working for Code Foundation, org
+responsible for languages support inside AWS. Today we present Smithy, the
+result of more than 10 years of experience building model-first API. Smithy is
+a language for defining services and SDKs.
+    * Protocol agnostic
+    * Resource based
+    * Designed to be extended and evolved
+-->
+
 ---
 
 ![bg right:40%](assets/bulbasaur.jpg)
@@ -43,6 +53,14 @@ Smithy is a language for defining services and SDKs.
 
 ![image](assets/smithy-example.png)
 
+<!--
+Smithy is based on an interface definition language that has been widely used within
+Amazon and AWS for over a decade. We decided to release Smithy publicly to let other
+developers use Smithy for their own services and benefit from our years of experience
+with building tens of thousands of services. By releasing the Smithy specification and
+tooling, we also hope to make it easier for developers to maintain open source AWS SDKs.
+-->
+
 ---
 
 ![bg left:30%](assets/puff.jpg)
@@ -55,6 +73,10 @@ Smithy is a language for defining services and SDKs.
 - Reliable, built on top of [Tokio](http://tokio.rs) and [Hyper](https://hyper.rs)
 - Focus on the API business logic
 
+<!--
+Set of tools based on Smithy that allows to code generate clients and servers
+SDKs. The technology is used for example to generate the public Rust SDKs
+-->
 ---
 
 ## Smithy-rs
