@@ -30,13 +30,11 @@ Package showing how you can build an API using [smithy-rs](https://github.com/aw
 
 ## How to build
 
-This package require an initial build using Gradle to generate the Cargo
+This package requires an initial build using Gradle to generate the Cargo
 workspace:
 
 ```bash
-❯❯❯ ./gradlew clean
 ❯❯❯ ./gradlew assemble
-❯❯❯ ./gradlew rebuild
 ```
 
 After the first build any change to the [model](/model/pokemon.smithy)
