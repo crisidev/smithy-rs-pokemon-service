@@ -22,7 +22,7 @@ docs/slides.html
 .gradle
 build/
 gradle-app.setting
-gradle-wrapper.jar
+!gradle-wrapper.jar
 
 # mkcert
 certs

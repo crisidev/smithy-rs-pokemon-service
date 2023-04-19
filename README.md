@@ -40,7 +40,6 @@ as well).
 ❯❯❯ cd smithy-rs-pokemon-service
 ❯❯❯ git submodule init
 ❯❯❯ git submodule update  # the submodule is big, be patient =)
-❯❯❯ gradle wrapper --gradle-version 7.4
 ```
 
 ## How to build
