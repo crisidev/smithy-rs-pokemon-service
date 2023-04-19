@@ -19,6 +19,7 @@ Gotta catch 'em all!
 
 <!-- vim-markdown-toc Marked -->
 
+* [How to checkout](#how-to-checkout)
 * [How to build](#how-to-build)
 * [Run and test](#run-and-test)
 * [Build my own project](#build-my-own-project)
@@ -29,6 +30,16 @@ Gotta catch 'em all!
 
 Package showing how you can build an API using [smithy-rs](https://github.com/awslabs/smithy-rs)
 
+## How to checkout
+
+```bash
+❯❯❯ git clone https://github.com/crisidev/smithy-rs-pokemon-service
+❯❯❯ cd smithy-rs-pokemon-service
+❯❯❯ git submodule init
+❯❯❯ git submodule update
+❯❯❯ gradle wrapper --gradle-version 7.4
+```
+
 ## How to build
 
 This package requires an initial build using Gradle to generate the Cargo
@@ -38,8 +49,11 @@ workspace:
 ❯❯❯ ./gradlew assemble
 ```
 
-After the first build any change to the [model](/model/pokemon.smithy)
-will be detected by Cargo and the code-generator should run automatically.
+After the first build, if there are changes to the [model](/model/pokemon.smithy),
+the command above must be run again to ensure the SDK crate is up to date.
+
+
+Once the SDK is generated, normal Cargo commands will work as expected:
 
 ```bash
 ❯❯❯ cargo build
@@ -47,8 +61,7 @@ will be detected by Cargo and the code-generator should run automatically.
 ❯❯❯ cargo test
 ```
 
-If the SDKs are not getting update after a model change, you can manually
-trigger it:
+If you need to perform a full cleanup:
 
 ```bash
 ❯❯❯ ./gradlew clean && ./gradlew assemble
