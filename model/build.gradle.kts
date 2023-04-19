@@ -3,9 +3,10 @@ val smithyVersion: String by project
 buildscript {
     repositories { mavenLocal() }
 
-    val serverCodegenVersion: String by project
+    val codegenVersion: String by project
     dependencies {
-        classpath("software.amazon.smithy.rust.codegen.server.smithy:codegen-server:$serverCodegenVersion")
+        classpath("software.amazon.smithy.rust.codegen.server.smithy:codegen-server:$codegenVersion")
+        classpath("software.amazon.smithy.rust.codegen:codegen-client:$codegenVersion")
     }
 }
 
@@ -14,6 +15,7 @@ plugins { id("software.amazon.smithy") }
 dependencies {
     implementation("software.amazon.smithy:smithy-aws-traits:$smithyVersion")
     implementation("software.amazon.smithy:smithy-model:$smithyVersion")
+    implementation("software.amazon.smithy:smithy-validation-model:$smithyVersion")
 }
 
 smithy { outputDirectory = buildDir.resolve("codegen") }
@@ -30,7 +32,7 @@ tasks {
     val clientSdkCrateName: String by project
     val copyClientCrate =
             create<Copy>("copyClientCrate") {
-                from("$buildDir/codegen/$clientSdkCrateName/rust-codegen")
+                from("$buildDir/codegen/$clientSdkCrateName/rust-codegen-client")
                 into("$srcDir/$clientSdkCrateName")
             }
 

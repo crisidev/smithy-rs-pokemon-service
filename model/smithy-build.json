@@ -25,7 +25,7 @@
                 "./pokemon.smithy"
             ],
             "plugins": {
-                "rust-codegen": {
+                "rust-client-codegen": {
                     "service": "org.crisidev#PokemonService",
                     "module": "pokemon-service-client-sdk",
                     "moduleDescription": "Rust client SDK for the Pokémon Service",

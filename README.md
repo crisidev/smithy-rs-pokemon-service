@@ -32,11 +32,14 @@ Package showing how you can build an API using [smithy-rs](https://github.com/aw
 
 ## How to checkout
 
+First of all, make sure you have the JVM installed at version 11 (17 should work
+as well).
+
 ```bash
 ❯❯❯ git clone https://github.com/crisidev/smithy-rs-pokemon-service
 ❯❯❯ cd smithy-rs-pokemon-service
 ❯❯❯ git submodule init
-❯❯❯ git submodule update
+❯❯❯ git submodule update  # the submodule is big, be patient =)
 ❯❯❯ gradle wrapper --gradle-version 7.4
 ```
 

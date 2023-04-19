@@ -3,6 +3,7 @@ $version: "1.0"
 namespace org.crisidev
 
 use aws.protocols#restJson1
+use smithy.framework#ValidationException
 
 /// The Pokémon Service allows you to retrieve information about Pokémon species.
 @title("Pokémon Service")
@@ -20,7 +21,7 @@ service PokemonService {
 operation GetPokemonSpecies {
     input: GetPokemonSpeciesInput,
     output: GetPokemonSpeciesOutput,
-    errors: [PokemonNotFoundException],
+    errors: [PokemonNotFoundException, ValidationException],
 }
 
 @input
